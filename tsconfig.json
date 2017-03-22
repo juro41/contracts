@@ -11,6 +11,14 @@
     "lib": [
       "es2016",
       "dom"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [    
+      "node",
+      "elasticsearch",   
+      "webpack"
     ]
   }
 }
