@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ResultsService } from '../results.service'
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ResultsService } from '../results.service';
+
 
 @Component({
   selector: 'app-search',
@@ -9,14 +10,21 @@ import { ResultsService } from '../results.service'
 })
 export class SearchComponent implements OnInit {
   clickMessage = '';
-
-  constructor(private resultsService: ResultsService) { }
-
+  private status: String = 'not ok';
+  hitsCount: number = 0;
+  constructor(private resultsService: ResultsService, private ref: ChangeDetectorRef) { }
   ngOnInit() {
   }
 
   onClickMe(text: string) {
-    this.clickMessage = this.resultsService.getResults(text);
+    let promise = this.resultsService.search(text);
+    
+    promise.then( (result) => {
+      console.log(result.hits.total);
+      this.clickMessage = result.hits.total + "";
+      this.ref.detectChanges();
+    } );
+
   }
 
 }

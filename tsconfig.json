@@ -18,7 +18,8 @@
     "types": [    
       "node",
       "elasticsearch",   
-      "webpack"
+      "webpack",
+      "jquery"
     ]
   }
 }
