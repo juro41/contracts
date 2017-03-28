@@ -15,10 +15,12 @@ export class ResultsService {
     }
   }
 
-  search(input: string) {
+  search(expression: string, size: number, shift: number) {
     console.log("search");
     return  this._client.search({
-      q: input
+      q: expression,
+      size: size,
+      from: shift
     });
   }
 

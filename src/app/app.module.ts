@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ResultListComponent } from './result-list/result-list.component';
 import { SearchComponent } from './search/search.component';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { SearchComponent } from './search/search.component';
     AppComponent,
     ResultListComponent,
     SearchComponent,
+    PaginatorComponent,
   ],
   imports: [
     BrowserModule,

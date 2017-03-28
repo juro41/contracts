@@ -7,9 +7,13 @@
   <li >
     <h2>{{contract._source.title}}</h2>
     {{contract._source.customer.name}}
-    {{contract._source.attachments[0].text}}
+    <!--{{contract._source.attachments[0].text}}-->
     <a href="{{contract._source.attachments[0].link}}" >Link</a>
 
   </li>
 </ul>
- 
+<div [hidden]="!showPaginator" class="paginator">
+<button (click)="getPreviousPage()">Previous Page</button>
+<button (click)="getNextPage()">Next Page</button>
+</div>
+
