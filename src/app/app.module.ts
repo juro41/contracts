@@ -12,7 +12,7 @@ import { SearchComponent } from './search/search.component';
   declarations: [
     AppComponent,
     ResultListComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,15 @@
-<input #text type="text"/>
-<button (click)="onClickMe(text.value)" >Search</button>
-{{clickMessage}}
+<input #text type="text"  (keyup)="onKey($event)" >
+<button (click)="onClickMe(text.value)">Search</button>
+<p>Number of results: {{clickMessage}}</p> 
 <br>
-Hits: {{hitsCount}}
+
+<ul *ngFor="let contract of foundConctracts">
+  <li >
+    <h2>{{contract._source.title}}</h2>
+    {{contract._source.customer.name}}
+    {{contract._source.attachments[0].text}}
+    <a href="{{contract._source.attachments[0].link}}" >Link</a>
+
+  </li>
+</ul>
+ 
