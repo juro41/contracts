@@ -1,19 +1,28 @@
-<input #text type="text"  (keyup)="onKey($event)" >
-<button (click)="onClickMe(text.value)">Search</button>
-<p>Number of results: {{clickMessage}}</p> 
+<div class="simpleSearch">
+  <input #text type="text" (keyup)="onKeyText($event)" placeholder="Search">
+  <button (click)="onSimpleSearchClick(text.value)">Search</button>
+</div>
+<div class="advancedSearch">
+  <input #icoCustomer type="text" placeholder="IČO zákazník">
+  <input #icoSupplier type="text" placeholder="IČO dodávatel">
+  <button (click)="onAdvancedSearchClick(text.value, icoCustomer.value, icoSupplier.value)">A Search</button>
+</div>
+
+<p>Number of results: {{clickMessage}}</p>
 <br>
 
 <ul *ngFor="let contract of foundConctracts">
-  <li >
+  <tr>
     <h2>{{contract._source.title}}</h2>
     {{contract._source.customer.name}}
-    <!--{{contract._source.attachments[0].text}}-->
-    <a href="{{contract._source.attachments[0].link}}" >Link</a>
+    <p>Value: {{contract._source.value.amount}} {{contract._source.value.currency}}</p>
 
-  </li>
+    <!--{{contract._source.attachments[0].text}}-->
+    <a href="{{contract._source.attachments[0].link}}">Link</a>
+
+  </tr>
 </ul>
 <div [hidden]="!showPaginator" class="paginator">
-<button (click)="getPreviousPage()">Previous Page</button>
-<button (click)="getNextPage()">Next Page</button>
+  <button (click)="getPreviousPage()">Previous Page</button>
+  <button (click)="getNextPage()">Next Page</button>
 </div>
-

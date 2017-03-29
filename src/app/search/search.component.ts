@@ -21,12 +21,12 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClickMe(text: string) {
+  onSimpleSearchClick(text: string) {
     this.shift = 0;
     this.getData(text, this.size, 0);
   }
 
-  onKey(event: any) { // without type info
+  onKeyText(event: any) { // without type info
     this.shift = 0;
     this.expression = event.target.value;
     this.getData(this.expression, this.size, 0);
@@ -35,7 +35,6 @@ export class SearchComponent implements OnInit {
   getNextPage() {
     console.log(this.shift + this.size);
     if((this.shift + this.size) < this.hitsCount) {
-      console.log("ahoj");
       this.shift += this.size;
     }
     this.getData(this.expression, this.size, this.shift);
@@ -50,6 +49,23 @@ export class SearchComponent implements OnInit {
 
   getData(text, size, shift){
     let promise = this.resultsService.search(text, size, shift);
+    promise.then((result) => {
+      this.foundConctracts = result.hits.hits;
+      this.hitsCount = result.hits.total
+      this.clickMessage = this.hitsCount + "";
+      console.log(this.hitsCount);
+      this.ref.detectChanges();
+    });
+  }
+
+  onAdvancedSearchClick(text: string, icoCustomer: string, icoSupplier: string) {
+    this.shift = 0;
+    console.log(icoCustomer);
+    this.getDataAdvanced(text, icoCustomer, icoSupplier, this.size, 0);
+  }
+
+  getDataAdvanced(text, icoCustomer, icoSupplier, size,shift) {
+    let promise = this.resultsService.advancedSearch(text, icoCustomer,icoSupplier, size, shift);
     promise.then((result) => {
       this.foundConctracts = result.hits.hits;
       this.hitsCount = result.hits.total
