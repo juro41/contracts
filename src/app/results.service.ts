@@ -8,7 +8,6 @@ export class ResultsService {
 
   private _client: Client;
 
-
   constructor() {
     if (!this._client) {
       this._connect();
