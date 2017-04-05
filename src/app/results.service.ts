@@ -46,7 +46,6 @@ export class ResultsService {
   private _connect() {
     this._client = new Client({
       host: 'http://localhost:9200',
-      log: 'trace'
     });
   };
 

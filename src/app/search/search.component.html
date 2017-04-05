@@ -22,7 +22,12 @@
 
   </tr>
 </ul>
-<div [hidden]="!showPaginator" class="paginator">
+<div class="search-results">
+  <button (click)="loadMore()">Load more</button>
+  <button (click)="onTop()">Back on top</button>
+
+</div>
+<!--<div [hidden]="!showPaginator" class="paginator">
   <button (click)="getPreviousPage()">Previous Page</button>
   <button (click)="getNextPage()">Next Page</button>
-</div>
+</div>-->
