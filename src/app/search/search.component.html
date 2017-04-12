@@ -1,33 +1,108 @@
-<div class="simpleSearch">
-  <input #text type="text" (keyup)="onKeyText($event)" placeholder="Search">
-  <button (click)="onSimpleSearchClick(text.value)">Search</button>
+<div id="simpleSearch" class="simpleSearch">
+  <input #text type="text" id="simpleSearchInp" class="searchInput" (keyup)="onKeyText($event)" placeholder="Search">
+  <!--<button (click)="onSimpleSearchClick(text.value)">Search</button>-->
 </div>
 <div class="advancedSearch">
-  <input #icoCustomer type="text" placeholder="IČO zákazník">
-  <input #icoSupplier type="text" placeholder="IČO dodávatel">
-  <button (click)="onAdvancedSearchClick(text.value, icoCustomer.value, icoSupplier.value)">A Search</button>
+  <input #nameContract type="text" placeholder="Název smlouvy"  class="searchInput">
+  <input #icoCustomer type="text" placeholder="IČO zákazník" class="searchInput">
+  <input #nameCustomer type="text" placeholder="Meno zákazníka" class="searchInput">
+  <input #icoSupplier type="text" placeholder="IČO dodavatel" class="searchInput">
+  <input #nameSupplier type="text" placeholder="Meno dodavatele" class="searchInput">
+  <button class="blackBtn" (click)="onAdvancedSearchClick(text.value, icoCustomer.value, icoSupplier.value)">Hledej</button>
 </div>
-
 <p>Number of results: {{clickMessage}}</p>
 <br>
-
-<ul *ngFor="let contract of foundConctracts">
-  <tr>
-    <h2>{{contract._source.title}}</h2>
-    {{contract._source.customer.name}}
-    <p>Value: {{contract._source.value.amount}} {{contract._source.value.currency}}</p>
-
-    <!--{{contract._source.attachments[0].text}}-->
-    <a href="{{contract._source.attachments[0].link}}">Link</a>
-
+<table>
+  <tr class="collumnHeaders">
+    <th style="width:40%">Název smlouvy</th>
+    <th style="width:25%">Zákazník</th>
+    <th style="width:25%">Dodavatel</th>
+    <th style="width:10%">Hodnota smlouvy</th>
+    <!--<th>Detail</th>-->
   </tr>
-</ul>
-<div class="search-results">
-  <button (click)="loadMore()">Load more</button>
-  <button (click)="onTop()">Back on top</button>
-
+  <ng-container *ngFor="let contract of foundConctracts; let i = index; trackBy: trackByFn">
+    <tr class="collumn">
+      <td>
+        <button (click)="showDetail($event)" value="expand{{i}}" class="expandButton">{{contract._source.title | longText}}</button>
+      </td>
+      <td>
+        {{contract._source.customer.name}}
+      </td>
+      <td>
+        {{contract._source.supplier.name}}
+      </td>
+      <td>
+        <p class="value">{{contract._source.value.amount | value}} {{contract._source.value.currency}}</p>
+      </td>
+      <!--{{contract._source.attachments[0].text}}-->
+      <!--<td>
+        <button (click)="showDetail($event)" value="expand{{i}}">Detajl</button>
+      </td>-->
+    </tr>
+    <tr id="expand{{i}}" class="expandable">
+      <td class="detail" #filter colspan="5">
+        <table>
+          <tr>
+            <th style="width:20%o">Název smlouvy</th>
+            <td>
+              {{contract._source.title}}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Zákazník</p>
+              <p>Adresa</p>
+              <p>IČO</p>
+            </th>
+            <td>
+              <div>
+                <p>{{contract._source.customer.name}}</p>
+                <p>{{contract._source.customer.address}}</p>
+                <p>{{contract._source.customer.ico}}</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <p>Dodavatel</p>
+              <p>Adresa</p>
+              <p>IČO</p>
+            </th>
+            <td>
+              <p>{{contract._source.supplier.name}}</p>
+              <p>{{contract._source.supplier.address}}</p>
+              <p>{{contract._source.supplier.ico}}</p>
+            </td>
+          </tr>
+          <tr>
+            <th>Prilohy</th>
+            <td>
+              <ng-container *ngFor="let attachment of contract._source.attachments">
+                <a href="{{attachment.link}}">{{attachment.name}}</a><br>
+              </ng-container>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </ng-container>
+</table>
+<div class="loadMore">
+  <button class="blackBtn" id="loadMoreBtn" (click)="loadMore()">Load more</button>
+  <!--<button (click)="onTop()">Back on top</button>
+  <button (click)="smoothScroll($element)">Scroll</button>-->
+  <!--<button (click)="goToHead2()">Scroll2</button>-->
+  <!--<a pageScroll #scrollButton [pageScrollDuration]="500" [attr.ng-reflect-href]="test" [attr.href]="test" (click)="onScrollButton()">Scroll on top</a>-->
+  <!--<a pageScroll #scrollButton [pageScrollDuration]="500" href="#awesomePart" >Scroll on top</a>-->
 </div>
+
+<!--<a pageScroll href="#awesomePart">Take me to the awesomeness</a>-->
+<!-- Further content here -->
+
 <!--<div [hidden]="!showPaginator" class="paginator">
   <button (click)="getPreviousPage()">Previous Page</button>
   <button (click)="getNextPage()">Next Page</button>
 </div>-->
+<a href="javascript:void(0)" id="back-to-top" (click)="goToHead2()">
+  <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+</a>

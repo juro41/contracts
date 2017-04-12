@@ -1,3 +1,101 @@
 h2 {
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#back-to-top {
+  background: none;
+  margin: 0;
+  position: fixed;
+  top: 70%;
+  right: 0;
+  width: 50px;
+  height: 70px;
+  z-index: 100;
+  text-decoration: none;
+  font-size: 50px;
+  opacity: 0;
+}
+
+.sidebar {
+  transition: all .3s;
+}
+
+.expandable {
+  line-height: 0px;
+  display: none;
+}
+
+.detail {
+  overflow: hidden;
+}
+
+tr {
+  border-bottom: 0.5px solid #ddd;
+}
+
+.collumn {
+  height: 70px;
+}
+
+.collumn:hover {
+  background: aliceblue;
+}
+
+table {
+  width: 100%
+}
+
+.expandButton {
+  background: none;
+  text-align: left;
+  border: none;
+  padding: 0px;
+  font-weight: 600;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  font-size: 17px;
+  font-weight: 200;
+}
+
+.value {
+  text-align: right;
+}
+
+.detail th {
+  width: 20%;
+}
+
+.loadMore {
+  text-align: center;
+}
+
+.blackBtn {
+  background: black;
+  border: none;
+  color: white;
+  font-weight: 200;
+  font-size: 18px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.searchInput {
+  border: 1px solid;
+  margin-bottom: 5px;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 200;
+  margin-right: 5px;
+  overflow: hidden;
+}
+
+#simpleSearchInp {
+  width: 100%;
+}
+
+.advancedSearch {
+  display: flex;
 }

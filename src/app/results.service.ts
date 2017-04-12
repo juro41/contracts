@@ -15,7 +15,6 @@ export class ResultsService {
   }
 
   advancedSearch(expression: string, icoCustomer: string, icoSupplier: string, size: number, shift: number) {
-    console.log("search" + icoCustomer);
     return this._client.search({
       body: {
         query: {
@@ -33,7 +32,6 @@ export class ResultsService {
   }
 
   search(expression: string, size: number, shift: number) {
-    console.log("search");
     return this._client.search({
       q: expression,
       size: size,
@@ -45,7 +43,7 @@ export class ResultsService {
 
   private _connect() {
     this._client = new Client({
-      host: 'http://localhost:9200',
+      host: 'http://localhost:9200'
     });
   };
 
