@@ -1,0 +1,19 @@
+<div id="simpleSearch" class="simpleSearch">
+  <input #text type="text" id="simpleSearchInp" class="searchInput" (keyup)="onKeyText($event)" placeholder="Hledej">
+</div>
+<div class="advancedSearch">
+  <input #nameContract type="text" placeholder="Název smlouvy" class="searchInput">
+  <input #icoCustomer type="text" placeholder="IČO zákazník" class="searchInput">
+  <input #nameCustomer type="text" placeholder="Meno zákazníka" class="searchInput">
+  <input #icoSupplier type="text" placeholder="IČO dodavatel" class="searchInput">
+  <input #nameSupplier type="text" placeholder="Meno dodavatele" class="searchInput">
+  <button class="blackBtn" (click)="onAdvancedSearchClick( nameContract.value, icoCustomer.value, nameCustomer.value, icoSupplier.value, nameSupplier.value )">Hledej</button>
+</div>
+
+<p class="resultNum">Počet výsledků: {{hitsCountStr}}</p>
+
+<app-result-list (sort)="sortByValueClick()" [foundConctracts]="foundConctracts" [hitsCount]="hitsCount" ></app-result-list>
+
+<div class="loadMore" *ngIf="hitsCount">
+    <button class="blackBtn" id="loadMoreBtn" (click)="loadMore()">Načti více</button>
+</div>

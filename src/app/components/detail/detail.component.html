@@ -1,0 +1,46 @@
+<tr id="expand{{i}}" class="expandable">
+  <td class="detail" colspan="5">
+    <table>
+      <tr>
+        <th style="width:20%">Název smlouvy</th>
+        <td>
+          {{contract._source.title}}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <p>Zákazník</p>
+          <p>Adresa</p>
+          <p>IČO</p>
+        </th>
+        <td>
+          <div>
+            <p>{{contract._source.customer.name}}</p>
+            <p>{{contract._source.customer.address}}</p>
+            <p>{{contract._source.customer.ico}}</p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <p>Dodavatel</p>
+          <p>Adresa</p>
+          <p>IČO</p>
+        </th>
+        <td>
+          <p>{{contract._source.supplier.name}}</p>
+          <p>{{contract._source.supplier.address}}</p>
+          <p>{{contract._source.supplier.ico}}</p>
+        </td>
+      </tr>
+      <tr>
+        <th>Prilohy</th>
+        <td>
+          <ng-container *ngFor="let attachment of contract._source.attachments">
+            <a (click)="onAttachmentClick($event)" href="javascript:void(0)" title="{{attachment.link}}">{{attachment.name}}</a><br>
+          </ng-container>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>

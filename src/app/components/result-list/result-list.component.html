@@ -1,0 +1,29 @@
+<div id="resultsContent" *ngIf="hitsCount">
+  <table>
+    <tr class="collumnHeaders">
+      <th style="width:40%">Název smlouvy</th>
+      <th style="width:25%">Zákazník</th>
+      <th style="width:25%">Dodavatel</th>
+      <th style="width:10%"><a href="javascript:void(0)" (click)="sortByValueClick()">Hodnota smlouvy</a></th>
+    </tr>
+    <ng-container *ngFor="let contract of foundConctracts; let i = index;">
+      <tr class="row">
+        <td>
+          <button (click)="showDetail($event)" value="expand{{i}}" class="expandButton">{{contract._source.title | longText}}</button>
+        </td>
+        <td>
+          <a href="javascript:void(0)" (click)="searchByCustomer($event)">{{contract._source.customer.name}}</a>
+        </td>
+        <td>
+          <a href="javascript:void(0)" (click)="searchBySupplier($event)">{{contract._source.supplier.name}}</a>
+        </td>
+        <td>
+          <p class="value">{{contract._source.value.amount | value}} {{contract._source.value.currency}}</p>
+        </td>
+      </tr>
+      <app-detail (detail)="onAttachmentClick($event)" [contract]="contract" [i]="i" ></app-detail>
+    </ng-container>
+  </table>
+</div>
+
+<app-attachment-window [attachmentLink]="attachmentLink" *ngIf="isVisible" (closeAtt)="onAttachmentClick($event)" ></app-attachment-window>

@@ -1,0 +1,51 @@
+
+tr {
+  border-bottom: 0.5px solid #ddd;
+}
+
+th {
+  text-align: left;
+  font-size: 17px;
+  font-weight: 200;
+}
+
+.row {
+  height: 70px;
+}
+
+.row:hover {
+  background: aliceblue;
+}
+
+.row:before,
+.row:after {
+   content: none;
+}
+
+table {
+  width: 100%
+}
+
+.expandButton {
+  background: none;
+  text-align: left;
+  border: none;
+  padding: 0px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.value {
+  text-align: right;
+}
+
+
+.blackBtn {
+  background: black;
+  border: none;
+  color: white;
+  font-weight: 200;
+  font-size: 18px;
+  margin-bottom: 5px;
+  padding: 10px;
+}

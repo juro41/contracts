@@ -1,0 +1,26 @@
+.detail th {
+  width: 20%;
+}
+
+.detail {
+  overflow: hidden;
+}
+
+table {
+  width: 100%
+}
+
+tr {
+  border-bottom: 0.5px solid #ddd;
+}
+
+th {
+  text-align: left;
+  font-size: 17px;
+  font-weight: 200;
+}
+
+.expandable {
+  line-height: 0px;
+  display: none;
+}

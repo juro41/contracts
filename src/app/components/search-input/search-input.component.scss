@@ -1,0 +1,47 @@
+h2 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.sidebar {
+  transition: all .3s;
+}
+
+
+.blackBtn {
+  background: black;
+  border: none;
+  color: white;
+  font-weight: 200;
+  font-size: 18px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.searchInput {
+  border: 1px solid;
+  margin-bottom: 5px;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 200;
+  margin-right: 5px;
+  overflow: hidden;
+}
+
+#simpleSearchInp {
+  width: 100%;
+}
+
+.advancedSearch {
+  display: flex;
+}
+
+.resultNum {
+  font-size: 18px;
+  font-weight: 200;
+}
+
+
+
+.loadMore {
+  text-align: center;
+}
